@@ -1,9 +1,9 @@
 #include "analyseur_lexical.h"
 
 // La d�finition des mots cl�s de notre langage
-const char* keywords_list[]={"NEMCHIWBHADI","L3AYBAT","REJE3", "DEREJ", "TABT" , "MT7AREK", "ILAKAN", "ILAMAKAN",
-"MA7ED", "MENHADI", "LHADI","KTEB","WACH","BARAKA","TA7AJA","KHAWYA","HEZ7ET","JME3","TOUL","WACH3ADADWLA7ARF","WACH7ARF","WACH3ADAD","WACH3ALAMA","VABSOLUE",
-"LBA9I","SIN","COS","TAN","SQRT","LOG","EXP","PUISSANCE","ASIN","ACOS","ATAN","L3ADDAD","KIFMAKAN","KHROJ","FCT"};
+const char* keywords_list[]={"ZIDB","MDECLARI","REJE3", "KHADEM", "TABT" , "MTGHAYER", "ILA", "ILAMAKANCH",
+"MA7EDO", "BDA", "SALI","KTEB","WACH","HBESS","CHI7AJAKHRA","KHAWYA","HEZ7ET","JME3","TOUL","WACH3ADADWLA7ARF","WACH7ARF","WACH3ADAD","WACH3ALAMA","VABSOLUE",
+"LBA9I","SIN","COS","TAN","SQRT","LOG","EXP","PUISSANCE","ASIN","ACOS","ATAN","L3ADAD","KIFMAKAN","KHROJ","DALA"};
 const char* specialTokens_list[]={"CRO","CRF","PV","PT",  "PLUS", "MOINS", "MULT", "DIV", "VIR",  "AFF", "EG", "INF",  "INFEG", "SUP", "SUPEG", "DIFF", "PO",  "PF" , "AO", "AF", "DP"};
 const char* specialTokens_symb[]={"[","]",";",".", "+", "-",     "*",    "/",   "," ,   "=",  "==",  "<",    "<=",    ">",    ">=",  "!=", "(", ")", "{", "}", ":"};
 
@@ -111,7 +111,7 @@ boolean isNumber(){
         LexError("there is many characters in this word");
         word[j] = '\0';
         if(strcmp(word,"3LA7ASSAB")==0) {
-            strcpy(currentToken.name, "3LA7ASSAB");
+            strcpy(currentToken.name, "3LA7SSAB");
             strcpy(currentToken.value, word);
 
              return TRUE;
@@ -274,25 +274,5 @@ boolean isSpecial(){
     strcpy(currentToken.name, specialTokens_list[i-1]);
     strcpy(currentToken.value, op);
 
-
-    //hada le cas ta3 affectation d'un nbr n�gatif
-   /* if(strcmp(op,"=")==0) {
-
-        currentChar=NextChar();
-        if(currentChar == '-') {
-            char num[MAXDIGIT+1];
-            i=0;
-            num[0]=currentChar;
-            while( i++ <= MAXDIGIT && isdigit(num[i] = currentChar = NextChar())  );
-            if(num[i] == '.') while( ++i <= MAXDIGIT && isdigit(num[i] = currentChar = NextChar())  );
-            if(i > MAXDIGIT)
-             LexError("Number has several digit");
-             num[i] = '\0';
-            strcpy(currentToken.name, "NUM");
-            strcpy(currentToken.value, num);
-        }
-       }
-
-*/
     return TRUE;
 }
