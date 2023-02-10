@@ -8,7 +8,7 @@ int main()
         scanf("%d", &testNumber);
         /** L'ouverture du fichier**/
         char fileName[100];
-        sprintf(fileName,"test%d.txt",testNumber);
+        sprintf(fileName,"./Test/test%d.txt",testNumber);
         program = fopen(fileName, "r");
         if (program == NULL)
         {
