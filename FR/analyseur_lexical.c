@@ -97,7 +97,7 @@ boolean isNumber()
         return TRUE;
     }
 
-    else
+    /*else
     {
         int t = isdigit(num[i]);
         if (t == 0 && isalnum(num[i]) != 0)
@@ -190,7 +190,7 @@ boolean isNumber()
             strcpy(currentToken.value, num);
             return TRUE;
         }
-    }
+    }*/
 }
 
 boolean isWord()
