@@ -12,12 +12,12 @@ int main()
   if (choice == 1)
   {
     int result;
-    result = system("cd C:\\Users\\hossame\\Documents\\Dual-Compilers\\AR && AR");
+    result = system("cd ./AR && AR");
   }
   else if (choice == 2)
   {
     int result;
-    result = system("cd C:\\Users\\hossame\\Documents\\Dual-Compilers\\FR && FR");
+    result = system("cd ./FR && FR");
   }
   else {
     exit(1);
