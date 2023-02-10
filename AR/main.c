@@ -12,7 +12,7 @@ int main()
         program = fopen(fileName, "r");
         if (program == NULL)
         {
-                perror("Error while opening the file");
+                printf("Error while opening the file");
                 exit(1);
         }
 
@@ -28,7 +28,7 @@ int main()
                 getToken();
         } while (strcmp(currentToken.name, "EOF"));
         /** Le résultat de l'analyseur syntaxique**/
-        printf("Anaylyseur Lexical sala \n ========================= \n");
+        printf("Analyseur Lexical sala \n ========================= \n");
         afficherListe_syntax(chaine_syntax);
         PROGRAM();
         if (chaine_syntax == NULL)
