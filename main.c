@@ -19,5 +19,8 @@ int main()
     int result;
     result = system("cd C:\\Users\\Geek Store\\Desktop\\New folder (5)\\compilateur-BL-MEGHRIBI\\projet_compilation\\FR && FR");
   }
+  else {
+    exit(1);
+  }
   return 0;
 }

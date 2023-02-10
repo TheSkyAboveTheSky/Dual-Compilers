@@ -8,7 +8,7 @@ int main()
         scanf("%d", &testNumber);
         /** L'ouverture du fichier**/
         char fileName[100];
-        sprintf(fileName,"./Test/test2.txt",testNumber);
+        sprintf(fileName,"./Test/test%d.txt",testNumber); // sprintf katstori loutput dyal seconds arguments f lfirst argument
         program = fopen(fileName, "r");
         if (program == NULL)
         {
@@ -19,7 +19,7 @@ int main()
         /** Le résultat de l'analyseur lexical **/
         NextChar();
         getToken();
-        printf("\nAnalyseur lexical:La liste des Tokens\n");
+        printf("\n Analyseur lexical: La liste des Tokens \n");
         do
         {
                 // l'affichage du résultat de l'analyseur lexical
@@ -28,9 +28,9 @@ int main()
                 getToken();
         } while (strcmp(currentToken.name, "EOF"));
         /** Le résultat de l'analyseur syntaxique**/
-        printf("Lexical sala\n=========================\n");
+        printf("Anaylyseur Lexical sala \n ========================= \n");
         afficherListe_syntax(chaine_syntax);
         PROGRAM();
         if (chaine_syntax == NULL)
-                printf("\nSyntaxique sala bi najaaaa7!\n");
+                printf("\n Analyseur Syntaxique sala bi najaaaa7! \n");
 }
