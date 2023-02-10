@@ -1,5 +1,5 @@
 #include "analyseur_syntaxique.h"
-/** La chaine de l'analyseur syntaxique **/
+/* La chaine de l'analyseur syntaxique */
 
 // permet d'insérer un tocken dans une liste chaine
 void insertion_syntax(char* nameToken,char* valueToken)
@@ -41,7 +41,7 @@ boolean verifyToken(char* name_to_test){
          //printf("%s_GHALET\n",name_to_test);
         return FALSE;  }
     else {
-        printf("%s_S7I7\n",name_to_test);
+        printf("%s_CORRECT\n",name_to_test);
         chaine_syntax=chaine_syntax->suivant;
     return  TRUE;
 } }
@@ -52,12 +52,12 @@ void SyntaxError(){
 }
 
 void PROGRAM(){
-if(verifyToken("MDECLARI")) {
+if(verifyToken("DECLARATION")) {
         DEF();
-      if(! verifyToken("DALA")) SyntaxError();
+      if(! verifyToken("FONCTION")) SyntaxError();
       else {
           FONCTION();
-          if(! verifyToken("KHADEM")) SyntaxError();
+          if(! verifyToken("PRINCIPAL")) SyntaxError();
           else BLOCK();
 
            }
@@ -76,7 +76,7 @@ else SyntaxError();
 }
 
 void CONSTS(){
-if( verifyToken("TABT"))  {
+if( verifyToken("CTE"))  {
      do{
         CONSTID();
     }while(verifyToken("VIR"));
@@ -152,7 +152,7 @@ void TABCONST()
 
 
 void VARS(){
-if(verifyToken("MTGHAYER")){
+if(verifyToken("VAR")){
         do{
           if(! verifyToken("ID")) SyntaxError();
           else VAR();
@@ -184,7 +184,7 @@ else SyntaxError();
 
 void FONCTION(){
 if(verifyToken("AO")){
-   while(verifyToken("KHAWYA") || verifyToken("3AMRA")){
+   while(verifyToken("VIDE") || verifyToken("TYPE")){
       if(! verifyToken("ID")) SyntaxError();
       else {
           if(! verifyToken("PO")) SyntaxError();
@@ -196,7 +196,7 @@ if(verifyToken("AO")){
                  else{
                  DEF();
                  INSTS();
-                 if(verifyToken("REJE3")) {
+                 if(verifyToken("RETOURNER")) {
                     if(! verifyToken("PO")) SyntaxError();
                     else {
                           if(! (verifyToken("NUM")|| verifyToken("ID") )) SyntaxError();
@@ -233,13 +233,13 @@ void INSTS(){
 
 void INST(){
       if(verifyToken("ID")){ AFFECT(); INST(); }
-      else if(verifyToken("ILA")) { SI(); INST(); }
-      else if(verifyToken("KTEB")) { ECRIRE(); INST(); }
-      else if(verifyToken("9RA"))  { LIRE(); INST(); }
-      else if(verifyToken("BDA")) { FOR(); INST(); }
-      else if(verifyToken("MA7EDO")) { WHILE(); INST(); }
-      else if(verifyToken("3LA7SSAB")) { SWITCH(); INST(); }
-      else if(verifyToken("3EYETKHAWYA")) {APPELFCT(); INST();}
+      else if(verifyToken("SI")) { SI(); INST(); }
+      else if(verifyToken("ECRIRE")) { ECRIRE(); INST(); }
+      else if(verifyToken("LIRE"))  { LIRE(); INST(); }
+      else if(verifyToken("DE")) { FOR(); INST(); }
+      else if(verifyToken("TANTQUE")) { WHILE(); INST(); }
+      else if(verifyToken("SELON")) { SWITCH(); INST(); }
+      else if(verifyToken("APPELVIDE")) {APPELFCT(); INST();}
 
 }
 void AFFECT(){
@@ -260,7 +260,7 @@ void EXPR1(){
          if(! verifyToken("GUI")) SyntaxError();
               }
      }
-     else if(verifyToken("3EYET3AMRA"))
+     else if(verifyToken("APPELTYPE"))
           APPELFCT();
      else  EXPR();
 
@@ -295,7 +295,7 @@ void AFFEC2(){
          if(! verifyToken("GUI")) SyntaxError();
               }
      }
-      else if(verifyToken("3EYET3AMRA"))
+      else if(verifyToken("APPELTYPE"))
           APPELFCT();
       else  EXPR();
 
@@ -308,7 +308,7 @@ void SI(){
     else {
           INSTS();
           if(! verifyToken("AF")) SyntaxError();
-          if(verifyToken("ILAMAKANCH"))  {
+          if(verifyToken("SINON"))  {
                      if(! verifyToken("AO")) SyntaxError();
                      else {
                           INSTS();
@@ -375,7 +375,7 @@ else {
                   else {
                         if(! verifyToken("PF")) SyntaxError();
                         else {
-                              if(! verifyToken("SALI")) SyntaxError();
+                              if(! verifyToken("A")) SyntaxError();
                               else {
                                     if(! verifyToken("PO")) SyntaxError();
                                     else {
@@ -387,7 +387,7 @@ else {
                                                        else {
                                                              if(! verifyToken("PF")) SyntaxError();
                                                             else {
-                                                                 if(! verifyToken("ZIDB")) SyntaxError();
+                                                                 if(! verifyToken("AVEC")) SyntaxError();
                                                                  else {
                                                                        if(! verifyToken("PO")) SyntaxError();
                                                                        else {
@@ -441,22 +441,22 @@ else {
             else {
                   if(! verifyToken("AO")) SyntaxError();
                   else {
-                        if(! verifyToken("WACH")) SyntaxError();
+                        if(! verifyToken("CAS")) SyntaxError();
                         else {
                               do{
                               ALPHANUM();
                                if(! verifyToken("DP")) SyntaxError();
                                INSTS();
-                               if(verifyToken("HBESS")){
+                               if(verifyToken("ARRETE")){
                                   if(!verifyToken("PV")) SyntaxError();
                                      }
-                               }while(verifyToken("WACH"));
-                               if(! verifyToken("CHI7AJAKHRA")) SyntaxError();
+                               }while(verifyToken("CAS"));
+                               if(! verifyToken("AUTRE")) SyntaxError();
                                else {
                                     if(! verifyToken("DP")) SyntaxError();
                                     else {
                                           INSTS();
-                                          if(verifyToken("HBESS")){
+                                          if(verifyToken("ARRETE")){
                                              if(!verifyToken("PV")) SyntaxError();
                                                                     }
                                           if(! verifyToken("AF")) SyntaxError();
@@ -534,14 +534,14 @@ void APPELFCT(){
 
 void APPEL(){
 if(verifyToken("ID")) FCTDEC();
-else if( verifyToken("WACH3ADADWLA7ARF")|| verifyToken("WACH7ARF") || verifyToken("WACH3ADAD") || verifyToken("WACH3ALAMA") || verifyToken("VABSOLUE") ||
-        verifyToken("LBA9I")  || verifyToken("SIN") || verifyToken("COS") || verifyToken("TAN") || verifyToken("SQRT")  ||  verifyToken("LOG") || verifyToken("EXP") ||
-        verifyToken("PUISSANCE") || verifyToken("ASIN")||  verifyToken("9SSEM") || verifyToken("ACOS") || verifyToken("ATAN") || verifyToken("L3ADAD") ||
-        verifyToken("KIFMAKAN") ) FCTDEFC1();
-else if(verifyToken("KHROJ")) FCTDEFC2();
-else if(verifyToken("HEZ7ET") || verifyToken("JME3")) FCTDEFC3();
-else if(verifyToken("TOUL")) FCTDEFC4();
-else if(verifyToken("9AREN")) FCTDEFC5();
+else if( verifyToken("CHIFFREOUCARACTERE")|| verifyToken("ESTCARACTERE") || verifyToken("ESTCHIFFRE") || verifyToken("ESTSYMBOLE") || verifyToken("VABSOLUE") ||
+        verifyToken("MODULO")  || verifyToken("SIN") || verifyToken("COS") || verifyToken("TAN") || verifyToken("SQRT")  ||  verifyToken("LOG") || verifyToken("EXP") ||
+        verifyToken("PUISSANCE") || verifyToken("ASIN")||  verifyToken("DIVISE") || verifyToken("ACOS") || verifyToken("ATAN") || verifyToken("VERSCHIFFRE") ||
+        verifyToken("ALEATOIRE") ) FCTDEFC1();
+else if(verifyToken("SORTIR")) FCTDEFC2();
+else if(verifyToken("COPIER") || verifyToken("COPIER")) FCTDEFC3();
+else if(verifyToken("LONGUEUR")) FCTDEFC4();
+else if(verifyToken("COMPARE")) FCTDEFC5();
 else SyntaxError();
 
 }

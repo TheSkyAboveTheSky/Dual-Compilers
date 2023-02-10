@@ -1,9 +1,9 @@
 #include "analyseur_lexical.h"
 
 // Les Mots cles
-const char *keywords_list[] = {"ZIDB", "MDECLARI", "REJE3", "KHADEM", "TABT", "MTGHAYER", "ILA", "ILAMAKANCH",
-                               "MA7EDO", "BDA", "SALI", "KTEB", "WACH", "HBESS", "CHI7AJAKHRA", "KHAWYA", "HEZ7ET", "JME3", "TOUL", "WACH3ADADWLA7ARF", "WACH7ARF", "WACH3ADAD", "WACH3ALAMA", "VABSOLUE",
-                               "LBA9I", "SIN", "COS", "TAN", "SQRT", "LOG", "EXP", "PUISSANCE", "ASIN", "ACOS", "ATAN", "L3ADAD", "KIFMAKAN", "KHROJ", "DALA"};
+const char *keywords_list[] = {"AVEC", "DECLARATION", "RETOURNER", "PRINCIPAL", "CTE", "VAR", "SI", "SINON",
+                               "TANTQUE", "DE", "A", "ECRIRE", "CAS", "ARRETE", "AUTRE", "VIDE", "COPIER", "CONCATENER", "LONGUEUR", "CHIFFREOUCARACTERE", "ESTCARACTERE", "ESTCHIFFRE", "ESTSYMBOLE", "VABSOLUE",
+                               "MODULO", "SIN", "COS", "TAN", "SQRT", "LOG", "EXP", "PUISSANCE", "ASIN", "ACOS", "ATAN", "VERSCHIFFRE", "ALEATOIRE", "SORTIR", "FONCTION","SELON","LIRE","COMPARE","TYPE","DIVISE","APPELTYPE","APPELVIDE"};
 const char *specialTokens_list[] = {"CRO", "CRF", "PV", "PT", "PLUS", "MOINS", "MULT", "DIV", "VIR", "AFF", "EG", "INF", "INFEG", "SUP", "SUPEG", "DIFF", "PO", "PF", "AO", "AF", "DP"};
 const char *specialTokens_symb[] = {"[", "]", ";", ".", "+", "-", "*", "/", ",", "=", "==", "<", "<=", ">", ">=", "!=", "(", ")", "{", "}", ":"};
 
