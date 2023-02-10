@@ -1,20 +1,18 @@
-MDECLARI{TABT x =2;
-MTGHAYER y;
+Declaration {CTE x =2;
 }
-DALA{
-  khawya test(){
+Fonction{
+  vide test(){
     {
-      tabt y=1;
-      MTGHAYER i;
+      CTE y=1;
+      var i;
     }
-    bda (i=0) sali (i=10) ZIDB(+1)
+    de (i=0) a (i=10) avec(+2)
         { 
-          kteb(i);
+          ecrire(i);
         }
   }
 }
-KHADEM {
-  kteb("BONJOUR"+ y);
-  9ra(a);
+principal {
+  ecrire("WOW"+ y);
+  lire(b);
 }
-
