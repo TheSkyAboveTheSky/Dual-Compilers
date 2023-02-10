@@ -5,6 +5,7 @@
 int main()
 {
         int testNumber;
+        printf("# Choisir le nombre de Test Parmis 1 et 2 : \n");
         scanf("%d", &testNumber);
         /* L'ouverture du fichier*/
         char fileName[100];
