@@ -1,0 +1,9 @@
+MDECLARI {
+  TABT x = 2;
+}
+DALA {
+
+}
+KHADEM {
+
+}

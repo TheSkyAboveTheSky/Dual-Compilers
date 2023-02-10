@@ -25,6 +25,7 @@ if(program == NULL){
          getToken();
     }while(strcmp(currentToken.name,"EOF"));
 /**************************************************************** Le r�sultat de l'analyseur syntaxique *****************************************************/
+   printf("Lexical sala\n=========================\n");
    afficherListe_syntax(chaine_syntax);
    PROGRAM();
    if(chaine_syntax==NULL) printf("\nBRAVO!!!\n");

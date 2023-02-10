@@ -24,9 +24,6 @@ Ident *suivant;
 };
 Ident* chaine_tab_symb;
 
-
-Element* chaine_semant1;
-Element* chaine_semant2 ;
 Element* chaine_syntax;
 void insertion_syntax(char* ,char* );
 void afficherListe_syntax(Element* );
