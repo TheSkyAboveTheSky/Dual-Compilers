@@ -12,25 +12,25 @@ int specialTokens_list_size;
 int testguill;
 int nbreguill;
 #define MAXDIGIT 11
-#define MAXCHAR  20
-#define NBRKEYWORDS         keywords_list_size
-#define NBRSPECIALTOKENS    specialTokens_list_size
-#define lenValue    20
-#define lenName     20
-/**************** cr�er un type qui retourne un bool�an *************************/
+#define MAXCHAR 20
+#define NBRKEYWORDS keywords_list_size
+#define NBRSPECIALTOKENS specialTokens_list_size
+#define lenValue 20
+#define lenName 20
+/**Boolean**/
 typedef enum{FALSE, TRUE} boolean;
-/*********************** Le pointeur du fichier *********************************/
+/**File**/
 FILE* program ;
-/*********************** La structre d'un Token *********************************/
+/**TOKEN**/
 typedef struct{
     char name[lenName];
     char value[lenValue];
 } Token;
-/******************************************************************************** La d�claration **********************************************************************************************/
+/**Declaration**/
 char currentChar;
 Token currentToken;
-char NextChar();// retourne le prochain caract�re dans le fichier
-void LexError();// affiche un message d'erreur et sortir
+char NextChar();
+void LexError();
 Token getToken();
 void ignoreWhiteSpaces();
 boolean isNumber();

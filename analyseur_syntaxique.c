@@ -1,7 +1,7 @@
 #include "analyseur_syntaxique.h"
-/********************* La chaine de l'analyseur syntaxique ******************/
+/** La chaine de l'analyseur syntaxique **/
 
-// permet d'ins�rer un tocken dans une liste chain�e
+// permet d'insérer un tocken dans une liste chaine
 void insertion_syntax(char* nameToken,char* valueToken)
 {
     Element *nouveau = malloc(sizeof(*nouveau));
@@ -16,7 +16,7 @@ void insertion_syntax(char* nameToken,char* valueToken)
     }
 }
 
-// cette fct permet l'affichage d'une liste chain�e qui contient les tockens
+// cette fct permet l'affichage d'une liste chaine qui contient les tockens
 void afficherListe_syntax(Element* chaine_syntax)
 {
     if (chaine_syntax == NULL)
