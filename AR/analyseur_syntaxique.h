@@ -14,16 +14,6 @@ struct Element
      Element *suivant;
 };
 
-typedef struct Ident Ident;
-struct Ident{
-char name[20];
-char value[20];
-char tidf[20];
-int taille_tab_fct;
-Ident *suivant;
-};
-Ident* chaine_tab_symb;
-
 Element* chaine_syntax;
 void insertion_syntax(char* ,char* );
 void afficherListe_syntax(Element* );

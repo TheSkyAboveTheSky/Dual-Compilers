@@ -1,0 +1,4 @@
+MDECLARI{TABT x =2;
+MTGHAYER y;
+}
+

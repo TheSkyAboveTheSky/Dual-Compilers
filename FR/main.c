@@ -6,9 +6,9 @@ int main()
 {
         int testNumber;
         scanf("%d", &testNumber);
-        /** L'ouverture du fichier**/
+        /* L'ouverture du fichier*/
         char fileName[100];
-        sprintf(fileName,"test%d.txt",testNumber);
+        sprintf(fileName,"./Test/test%d.txt",testNumber);
         program = fopen(fileName, "r");
         if (program == NULL)
         {
@@ -16,7 +16,7 @@ int main()
                 exit(1);
         }
 
-        /** Le résultat de l'analyseur lexical **/
+        /* Le résultat de l'analyseur lexical */
         NextChar();
         getToken();
         printf("\nAnalyseur lexical:La liste des Tokens\n");
@@ -27,10 +27,10 @@ int main()
                 insertion_syntax(currentToken.name, currentToken.value);
                 getToken();
         } while (strcmp(currentToken.name, "EOF"));
-        /** Le résultat de l'analyseur syntaxique**/
-        printf("Lexical sala\n=========================\n");
+        /* Le résultat de l'analyseur syntaxique*/
+        printf("\nL'analyse lexicale a ete bien effectuee!\n=========================\n");
         afficherListe_syntax(chaine_syntax);
         PROGRAM();
         if (chaine_syntax == NULL)
-                printf("\nSyntaxique sala bi najaaaa7!\n");
+                printf("\nL'analyse syntaxique a ete bien effectuee!\n");
 }
