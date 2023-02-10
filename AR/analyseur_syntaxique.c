@@ -1,7 +1,7 @@
 #include "analyseur_syntaxique.h"
-/********************* La chaine de l'analyseur syntaxique ******************/
+/** La chaine de l'analyseur syntaxique **/
 
-// permet d'ins�rer un tocken dans une liste chain�e
+// permet d'insérer un tocken dans une liste chaine
 void insertion_syntax(char* nameToken,char* valueToken)
 {
     Element *nouveau = malloc(sizeof(*nouveau));
@@ -16,7 +16,7 @@ void insertion_syntax(char* nameToken,char* valueToken)
     }
 }
 
-// cette fct permet l'affichage d'une liste chain�e qui contient les tockens
+// cette fct permet l'affichage d'une liste chaine qui contient les tockens
 void afficherListe_syntax(Element* chaine_syntax)
 {
     if (chaine_syntax == NULL)
@@ -27,26 +27,25 @@ void afficherListe_syntax(Element* chaine_syntax)
     Element *actuel = chaine_syntax;
     while (actuel != NULL)
     {
-/*         printf("%s\n", actuel->name); */
-/*         printf("%s\n", actuel->value); */
+        /* printf("%s\n", actuel->name); 
+         printf("%s\n", actuel->value); */
         actuel = actuel->suivant;
     }
 
 }
 
-// kanchofo wach tocken li f la liste chain�e hadik hya blassto syntaxiquement
+// kanchofo wach tocken li f la liste chaine hadik hya blassto syntaxiquement
 boolean verifyToken(char* name_to_test){
     if(chaine_syntax==NULL) return FALSE;
     else if(strcmp(chaine_syntax->name,name_to_test)!=0){
-         printf("%s_S7I7 \n",chaine_syntax->name);
+         //printf("%s_GHALET\n",name_to_test);
         return FALSE;  }
     else {
-        printf("%s_GHALET \n",chaine_syntax->name);
+        printf("%s_S7I7\n",name_to_test);
         chaine_syntax=chaine_syntax->suivant;
-    return TRUE;
+    return  TRUE;
 } }
 
-// had la fct 2affiche une erreur ila l9at chi erreur f syntaxe w katwe9ef le programme
 void SyntaxError(){
     printf("Syntax Error");
     exit(1);
@@ -114,7 +113,7 @@ if (verifyToken("PO")) {
 
 
 }
-else if(verifyToken("AFF")){
+if(verifyToken("AFF")){
     ALPHANUM();
 
 }
@@ -173,7 +172,7 @@ if( verifyToken("PO")) {
 
 }
 void ALPHANUM(){
-if(verifyToken("NUM"));
+if(verifyToken("NUM")){}
 else if(verifyToken("GUI")){
     if(! verifyToken("STRING")) SyntaxError();
     else {

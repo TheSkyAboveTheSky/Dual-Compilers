@@ -1,0 +1,20 @@
+MDECLARI{TABT x =2;
+MTGHAYER y;
+}
+DALA{
+  khawya test(){
+    {
+      tabt y=1;
+      MTGHAYER i;
+    }
+    bda (i=0) sali (i=10) ZIDB(+1)
+        { 
+          kteb(i);
+        }
+  }
+}
+KHADEM {
+  kteb("BONJOUR"+ y);
+  9ra(a);
+}
+
