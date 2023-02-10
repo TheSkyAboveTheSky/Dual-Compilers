@@ -27,8 +27,8 @@ void afficherListe_syntax(Element* chaine_syntax)
     Element *actuel = chaine_syntax;
     while (actuel != NULL)
     {
-/*         printf("%s\n", actuel->name); */
-/*         printf("%s\n", actuel->value); */
+        /* printf("%s\n", actuel->name); 
+         printf("%s\n", actuel->value); */
         actuel = actuel->suivant;
     }
 
@@ -38,12 +38,12 @@ void afficherListe_syntax(Element* chaine_syntax)
 boolean verifyToken(char* name_to_test){
     if(chaine_syntax==NULL) return FALSE;
     else if(strcmp(chaine_syntax->name,name_to_test)!=0){
-         printf("%s_S7I7 \n",chaine_syntax->name);
+         //printf("%s_GHALET\n",name_to_test);
         return FALSE;  }
     else {
-        printf("%s_GHALET \n",chaine_syntax->name);
+        printf("%s_S7I7\n",name_to_test);
         chaine_syntax=chaine_syntax->suivant;
-    return TRUE;
+    return  TRUE;
 } }
 
 // had la fct 2affiche une erreur ila l9at chi erreur f syntaxe w katwe9ef le programme
@@ -114,7 +114,7 @@ if (verifyToken("PO")) {
 
 
 }
-else if(verifyToken("AFF")){
+if(verifyToken("AFF")){
     ALPHANUM();
 
 }
@@ -173,7 +173,7 @@ if( verifyToken("PO")) {
 
 }
 void ALPHANUM(){
-if(verifyToken("NUM"));
+if(verifyToken("NUM")){}
 else if(verifyToken("GUI")){
     if(! verifyToken("STRING")) SyntaxError();
     else {
