@@ -34,7 +34,7 @@ void afficherListe_syntax(Element* chaine_syntax)
 
 }
 
-// kanchofo wach tocken li f la liste chain�e hadik hya blassto syntaxiquement
+// kanchofo wach tocken li f la liste chaine hadik hya blassto syntaxiquement
 boolean verifyToken(char* name_to_test){
     if(chaine_syntax==NULL) return FALSE;
     else if(strcmp(chaine_syntax->name,name_to_test)!=0){
@@ -46,7 +46,6 @@ boolean verifyToken(char* name_to_test){
     return  TRUE;
 } }
 
-// had la fct 2affiche une erreur ila l9at chi erreur f syntaxe w katwe9ef le programme
 void SyntaxError(){
     printf("Syntax Error");
     exit(1);
