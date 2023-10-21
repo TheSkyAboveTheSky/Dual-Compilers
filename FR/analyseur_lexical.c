@@ -4,30 +4,74 @@
 const char *keywords_list[] = {"AVEC", "DECLARATION", "RETOURNER", "PRINCIPAL", "CTE", "VAR", "SI", "SINON",
                                "TANTQUE", "DE", "A", "ECRIRE", "CAS", "ARRETE", "AUTRE", "VIDE", "COPIER", "CONCATENER", "LONGUEUR", "CHIFFREOUCARACTERE", "ESTCARACTERE", "ESTCHIFFRE", "ESTSYMBOLE", "VABSOLUE",
                                "MODULO", "SIN", "COS", "TAN", "SQRT", "LOG", "EXP", "PUISSANCE", "ASIN", "ACOS", "ATAN", "VERSCHIFFRE", "ALEATOIRE", "SORTIR", "FONCTION","SELON","LIRE","COMPARE","TYPE","DIVISE","APPELTYPE","APPELVIDE"};
+// Les Symboles
 const char *specialTokens_list[] = {"CRO", "CRF", "PV", "PT", "PLUS", "MOINS", "MULT", "DIV", "VIR", "AFF", "EG", "INF", "INFEG", "SUP", "SUPEG", "DIFF", "PO", "PF", "AO", "AF", "DP"};
 const char *specialTokens_symb[] = {"[", "]", ";", ".", "+", "-", "*", "/", ",", "=", "==", "<", "<=", ">", ">=", "!=", "(", ")", "{", "}", ":"};
 
+// la taille des tableaux des mots cles et des symboles
 int keywords_list_size = sizeof(keywords_list) / sizeof(keywords_list[0]);
 int specialTokens_list_size = sizeof(specialTokens_list) / sizeof(specialTokens_list[0]);
+// Le nombre de mots cles et de symboles
 #define NBRKEYWORDS keywords_list_size
 #define NBRSPECIALTOKENS specialTokens_list_size
+// nbre et test pour les guillemets
 testguill = 0;
 nbreguill = 1;
 
+/*-----------------------------------------------------------------------
+ * NextChar : Obtient le caractère suivant du flux d'entrée.
+ *
+ * Cette fonction lit et renvoie le caractère suivant du flux d'entrée.
+ *
+ * En entrée : Le flux d'entrée
+ *
+ * En sortie : Le caractère suivant du flux d'entrée.
+ *-----------------------------------------------------------------------*/
 char NextChar()
 {
+    /*----------------------------------------------------
+    * getc : Lit un caractère à partir d'un flux.
+    * int getc(FILE *stream);
+    * stream : Flux d'entrée.
+    */
     return currentChar = getc(program);
 }
-
+/*-----------------------------------------------------------------------
+ * LexError : Gère les erreurs lexicales.
+ *
+ * Cette fonction affiche un message d'erreur lexique et termine le
+ * programme en cas d'erreur.
+ *
+ * En entrée : Le message d'erreur à afficher.
+ *-----------------------------------------------------------------------*/
 void LexError(char *message)
 {
+    // afficher le message d'erreur
+    /*----------------------------------------------------
+    * printf : Affiche un message formaté sur la sortie standard.
+    * int printf(const char *format, ...);
+    * format : Chaîne de formatage.
+    *----------------------------------------------------*/
     printf("%s\n", message);
+
+    // terminer le programme
+    /*----------------------------------------------------
+    * exit : Termine le programme.
+    * void exit(int status);
+    * status : Code de retour du programme.
+    *-------------------------------------------------------*/
     exit(1);
 }
 
-// une fct li kat2ignori les espaces w les commentaires...
+/*-----------------------------------------------------------------------
+ * ignoreWhiteSpaces : Ignore les espaces et les commentaires.
+ *
+ * Cette fonction ignore les espaces, les tabulations et les commentaires
+ * dans le code source.
+ *-----------------------------------------------------------------------*/
 void ignoreWhiteSpaces()
 {
+    // Ignorer les espaces, les tabulations et les sauts de ligne
     while (currentChar == ' ' || currentChar == '\t' || currentChar == '\n')
     {
         NextChar();
@@ -35,8 +79,7 @@ void ignoreWhiteSpaces()
     // Ignorer les commentaires %...%
     if (currentChar == '%')
     {
-        while ((currentChar = NextChar()) != '%' && currentChar != EOF)
-            ;
+        while ((currentChar = NextChar()) != '%' && currentChar != EOF);
         currentChar = NextChar();
         while (currentChar == ' ' || currentChar == '\t' || currentChar == '\n')
         {
@@ -45,20 +88,44 @@ void ignoreWhiteSpaces()
     }
 }
 
-// mn b3d ma9rina caractére wa7ed b nextchar had la fct kat3iyet les fcts li ghay9raw lina kalma kamla
+/*-----------------------------------------------------------------------
+ * getToken : Obtient le mot suivant.
+ *
+ * Cette fonction récupère le prochain token (mot).
+ * Elle peut s'agir d'un nombre, d'un mot-clé, d'un opérateur, ou d'un
+ * identificateur.
+ *-----------------------------------------------------------------------*/
 Token getToken()
 {
     // vider le token
+
+    /*----------------------------------------------------
+    * memset : Remplit un bloc de mémoire avec une valeur.
+    * void *memset(void *s, int c, size_t n);
+    * s : Pointeur vers le bloc de mémoire à remplir.
+    * c : Valeur à affecter.
+    * n : Nombre d'octets à remplir.
+    *-------------------------------------------------------*/    
     memset(currentToken.name, '\0', lenName);
     memset(currentToken.value, '\0', lenValue);
-    // sauter les espaces
+
+    //Ignore les espaces et les commentaires    
     ignoreWhiteSpaces();
+
+    // Si le fichier est terminé, on renvoie le token EOF
     if (currentChar == EOF)
     {
+        /*----------------------------------------------------
+        * strcpy : Copie une chaîne de caractères.
+        * char *strcpy(char *dest, const char *src);
+        * dest : Chaîne de destination.
+        * src : Chaîne source.
+        */
         strcpy(currentToken.name, "EOF");
     }
     else if (isNumber())
     {
+
     }
     else if (isWord())
     {
@@ -71,167 +138,93 @@ Token getToken()
         LexError("Invalid Token");
     }
 }
-
+/*-----------------------------------------------------------------------
+ * isNumber : Vérifie si le token est un nombre.
+ *
+ * Cette fonction vérifie si le token est un nombre.
+ *
+ * En entrée : Le token à vérifier.
+ *
+ * En sortie : TRUE si le token est un nombre, FALSE sinon.
+ *-----------------------------------------------------------------------
+*/
 boolean isNumber()
 {
+    // Vérifier si le token est un chiffre , sinon retourner FALSE
     if (!isdigit(currentChar))
         return FALSE;
+
     char num[MAXDIGIT + 1];
     char word[MAXCHAR];
-
     int cmp = 0;
     int i = 0;
-
     num[0] = currentChar;
     i++;
-
+    // Vérifier si le token est un nombre décimal
     if ((num[i] = currentChar = NextChar()) == '.')
     {
-        while (++i <= MAXDIGIT && isdigit(num[i] = currentChar = NextChar()))
-            ;
+        while (++i <= MAXDIGIT && isdigit(num[i] = currentChar = NextChar()));
         if (i > MAXDIGIT)
             LexError("Number has several digit");
         num[i] = '\0';
+        // copier le nom et la valuer du token
         strcpy(currentToken.name, "NUM");
         strcpy(currentToken.value, num);
         return TRUE;
     }
-
-    /*else
-    {
-        int t = isdigit(num[i]);
-        if (t == 0 && isalnum(num[i]) != 0)
-        {
-            int j = 1;
-            word[0] = num[0];
-            word[1] = toupper(num[1]);
-            while (++j <= MAXCHAR && (isalnum(word[j] = currentChar = toupper(NextChar()))))
-                ;
-            if (j == MAXCHAR)
-                LexError("there is many characters in this word");
-            word[j] = '\0';
-            if (strcmp(word, "3LA7ASSAB") == 0)
-            {
-                strcpy(currentToken.name, "3LA7SSAB");
-                strcpy(currentToken.value, word);
-
-                return TRUE;
-            }
-            else if (strcmp(word, "9RA") == 0)
-            {
-                strcpy(currentToken.name, "9RA");
-                strcpy(currentToken.value, word);
-
-                return TRUE;
-            }
-            else if (strcmp(word, "9AREN") == 0)
-            {
-                strcpy(currentToken.name, "9AREN");
-                strcpy(currentToken.value, word);
-
-                return TRUE;
-            }
-            else if (strcmp(word, "3AMRA") == 0)
-            {
-                strcpy(currentToken.name, "3AMRA");
-                strcpy(currentToken.value, word);
-
-                return TRUE;
-            }
-            else if (strcmp(word, "7AZMA") == 0)
-            {
-                strcpy(currentToken.name, "7AZMA");
-                strcpy(currentToken.value, word);
-
-                return TRUE;
-            }
-            else if (strcmp(word, "9SSEM") == 0)
-            {
-                strcpy(currentToken.name, "9SSEM");
-                strcpy(currentToken.value, word);
-
-                return TRUE;
-            }
-            else if (strcmp(word, "3EYET3AMRA") == 0)
-            {
-                strcpy(currentToken.name, "3EYET3AMRA");
-                strcpy(currentToken.value, word);
-
-                return TRUE;
-            }
-            else if (strcmp(word, "3EYETKHAWYA") == 0)
-            {
-                strcpy(currentToken.name, "3EYETKHAWYA");
-                strcpy(currentToken.value, word);
-
-                return TRUE;
-            }
-        }
-
-        else if (t == 0 && isalnum(num[i]) == 0)
-        {
-            num[1] = '\0';
-            strcpy(currentToken.name, "NUM");
-            strcpy(currentToken.value, num);
-            return TRUE;
-        }
-
-        else if (t != 0 && isalnum(num[i]) != 0)
-        {
-            while (++i <= MAXDIGIT && isdigit(num[i] = currentChar = NextChar()))
-                ;
-            if (num[i] == '.')
-                while (++i <= MAXDIGIT && isdigit(num[i] = currentChar = NextChar()))
-                    ;
-            if (i > MAXDIGIT)
-                LexError("Number has several digit");
-            num[i] = '\0';
-            strcpy(currentToken.name, "NUM");
-            strcpy(currentToken.value, num);
-            return TRUE;
-        }
-    }*/
 }
-
+/*-----------------------------------------------------------------------
+ * isWord : Vérifie si le token est un mot.
+ *
+ * Cette fonction vérifie si le token est un mot.
+ *
+ * En entrée : Le token à vérifier.
+ *
+ * En sortie : TRUE si le token est un mot, FALSE sinon.
+ *-----------------------------------------------------------------------
+*/
 boolean isWord()
 {
-
+    // Vérifier si le token est un caractère alphabétique , sinon retourner FALSE
     if (!isalpha(currentChar))
         return FALSE;
 
     char word[MAXCHAR];
     int i = 0, j = 0, cmp = 0;
+    /*----------------------------------------------------
+    * toupper : Convertit un caractère en majuscule.
+    * int toupper(int c);
+    * c : Caractère à convertir.
+    */
     word[0] = toupper(currentChar);
 
-    while (++i <= MAXCHAR && (isalnum(word[i] = currentChar = toupper(NextChar())) || word[i] == '_'))
-        ;
+    while (++i <= MAXCHAR && (isalnum(word[i] = currentChar = toupper(NextChar())) || word[i] == '_'));
 
     if (i == MAXCHAR)
         LexError("there is many characters in this word");
 
     word[i] = '\0';
 
-    while ((cmp = strcmp(word, keywords_list[j++])) != 0 && j < NBRKEYWORDS)
-        ;
+    while ((cmp = strcmp(word, keywords_list[j++])) != 0 && j < NBRKEYWORDS);
 
     if (cmp == 0)
     {
         strcpy(currentToken.name, keywords_list[j - 1]);
         strcpy(currentToken.value, word);
     }
-    // le cas ila makanch le mot f le tableau des mots cles ==> donc ra howa un identificateur ou string
+    // Le cas ou le mot n'est pas un mot clé , donc c'est un identificateur
     else
     {
         if (testguill == 0)
         {
-            // hna le cas ila maknch 3ndna des guillemets donc ra automatiquement un id 3adi
+            // Le cas ou on'a pas de guillemets , donc c'est un identificateur simple
             strcpy(currentToken.name, "ID");
             strcpy(currentToken.value, word);
         }
         else
         {
-            // hna le cas ila kena deja l9ina des guillemets donc ra automatiquement 7na f string
-            // kan9raw string kamla wakha tkoun fiha bzaf dyal les mots
+            // Le cas ou on'a des guillemets , donc c'est un String (chaine de caractères)
+            // on lu tout le sring , meme si ona plusieurs mots
             while (currentChar != '"')
             {
                 word[i] = currentChar;
@@ -248,7 +241,16 @@ boolean isWord()
 
     return TRUE;
 }
-
+/*-----------------------------------------------------------------------
+ * isSpecial : Vérifie si le token est un opérateur.
+ *
+ * Cette fonction vérifie si le token est un opérateur.
+ *
+ * En entrée : Le token à vérifier.
+ *
+ * En sortie : TRUE si le token est un opérateur, FALSE sinon.
+ *-----------------------------------------------------------------------
+*/
 boolean isSpecial()
 {
     int j;
@@ -260,11 +262,11 @@ boolean isSpecial()
 
     if (currentChar == '"')
     {
-        // hna on a lu les guillemets et on teste si le nbrguill=1 donc rah il s'agit lghuill lewlin donc le mot qui va suivre doit avoir tocken String
-        // dakshi 3lash on a fait testguill=1 ca va nous aider fle cas ta3 string
+        // on lu les guillemets et on teste si le nbrguill=1 donc il's'agit des premiers guillemets donc le mot qui va suivre doit avoir tockn String
+        // c'est pourquoi on a fait testguill=1 ca va nous aider dans le cas du mots
         if (nbreguill == 1)
             testguill = 1;
-        // dans ce cas la 9riina des guillemets 3awtani mais puisque nbrguill est diff de 1 danc il s'agit des guill tanyin
+        // dans ce cas si on lu encore d'autres guillemets elles seront les deuxiemes
         else
             nbreguill = 1;
         op[1] = '\0';
@@ -274,7 +276,6 @@ boolean isSpecial()
         return TRUE;
     }
 
-    // hna zedna ( ) { } bach ila tlass9o m3a egal aprés man3tabrohomch opérateur w nmchiw n9albo 3lihom f tableau
     if ((op[1] = currentChar = NextChar()) != '=' || op[0] == ')' || op[0] == '}' || op[0] == '(' || op[0] == '{')
         // < ou > ou = ou ( ou ) ou ; ou  . ou + ou  - ou  * ou  /  ou , ou !
         op[1] = '\0';

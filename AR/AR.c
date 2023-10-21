@@ -9,7 +9,11 @@ int main()
         scanf("%d", &testNumber);
         /** L'ouverture du fichier**/
         char fileName[100];
-        sprintf(fileName,"./Test/test%d.txt",testNumber); // sprintf katstori loutput dyal seconds arguments f lfirst argument
+        /*----------------------------------------------------------------
+        *sprintf : 
+        */
+        sprintf(fileName,"./Test/test%d.txt",testNumber); 
+        
         program = fopen(fileName, "r");
         if (program == NULL)
         {
