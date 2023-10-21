@@ -22,7 +22,7 @@ Ce qui est souhaitable est d’aider les débutants à mieux s’intégrer dans 
 
 Ce projet de compilation est extrêmement utile car il permet de regrouper différents éléments en un seul et même endroit. La disponibilité de deux versions, en arabe et en français, en fait une solution encore plus attractive pour les utilisateurs qui peuvent ainsi choisir la langue qui leur convient le mieux. Cette polyvalence permet également d'atteindre un public plus large et de couvrir un plus grand nombre de besoins. En somme, le projet de compilation avec ses deux versions est un outil incontournable pour les personnes et les organisations qui cherchent à regrouper et à présenter de l'information de manière efficace et accessible.
 
-# II. Construction du langage ARABE
+# II. Construction du langage ARABE (Darija)
 
 ## 2.1 Blocs de programme
 
@@ -355,5 +355,3 @@ PRINCIPAL{
  ...
 }
 ```
-
-## 3.8.2 La grammaire
